@@ -1,7 +1,15 @@
 import { Router } from "express";
 import { StatusCodes } from "http-status-codes"
+import { authorizeUser } from './services/authorizeUser';
+import { getAllUsers } from './services/getAllUsers';
 
 const router = Router()
+
+// Auth user
+
+router.post('/users/auth', (request, response) => {
+    return authorizeUser(request, response)
+})
 
 // Create an user
 
@@ -12,7 +20,7 @@ router.post('/users', (request, response) => {
 // Return data from all users
 
 router.get('/users', (request, response) => {
-    return response.status(StatusCodes.OK).send("Get all users.")
+    return getAllUsers(request, response)
 })
 
 // Return data from a specific user
