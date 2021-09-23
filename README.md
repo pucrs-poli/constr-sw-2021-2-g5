@@ -27,4 +27,16 @@ https://www.youtube.com/watch?v=nkvBy4wefbs
 
 ## Development
 
-Duplicate the .env.example file and rename it to .env, then 
+Duplicate the .env.example file and rename it to .env, then set the variables according to the list bellow:
+
+- BASE_KEYCLOAK_URL = http://localhost:8080/auth
+- REALM_NAME = master
+- PORT = any port number you want
+
+Now you're ready to type the following command and start to develop:
+
+```
+yarn start
+```
+
+Your server will be avaliable according to the PORT you setted.
