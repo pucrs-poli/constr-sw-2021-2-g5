@@ -1,26 +1,24 @@
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import keycloakAdminClient from "../config/keycloak-config";
-import { StatusCodes } from 'http-status-codes';
 import { ErrorMessages } from "../utils/response-messages";
 
-export const getAllUsers = async (request: Request, response: Response): Promise<Response> => {
-
+export const getUserById = async (request: Request, response: Response, id): Promise<Response> => {
+    
     try {
-
-        console.log(keycloakAdminClient.accessToken)
-
         if (!keycloakAdminClient.accessToken) {
             return response.status(StatusCodes.BAD_REQUEST).json({
                 message: ErrorMessages.NOT_AUTHORIZED_USER
             })
         }
 
-        const user = await keycloakAdminClient.users.find()
-        return response.status(StatusCodes.OK).send(user)
+        const res = await keycloakAdminClient.users.findOne({id: id})
+
+        return response.status(StatusCodes.OK).json(res)
 
     } catch (err) {
         return response.status(StatusCodes.NOT_FOUND).json({
-            message: err.message
-        })   
+            message: ErrorMessages.NO_RECORDS_FOUND
+        })
     }
 }
