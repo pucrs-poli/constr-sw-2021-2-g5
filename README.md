@@ -33,7 +33,7 @@ Duplicate the .env.example file and rename it to .env, then set the variables ac
 
 - **BASE_KEYCLOAK_URL** = http://localhost:8080/auth
 - **REALM_NAME = master**
-- **PORT** = any port number you want
+- **PORT** = 3333
 
 Now you're ready to type the following command and start to develop:
 
