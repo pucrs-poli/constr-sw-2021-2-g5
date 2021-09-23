@@ -15,7 +15,9 @@ export const authorizeUser = async (request: Request, response: Response): Promi
             clientId
         })
         return response.status(StatusCodes.OK).json({
-            message: "User has been authorized."
+            message: "User has been authorized.",
+            accessToken: keycloakAdminClient.accessToken,
+            refreshToken: keycloakAdminClient.refreshToken
         })
     } catch (err) {
         return response.status(StatusCodes.BAD_REQUEST).json({

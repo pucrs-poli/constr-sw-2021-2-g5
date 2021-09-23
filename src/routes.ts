@@ -2,6 +2,8 @@ import { Router } from "express";
 import { StatusCodes } from "http-status-codes"
 import { authorizeUser } from './services/authorizeUser';
 import { getAllUsers } from './services/getAllUsers';
+import { createUser } from './services/createUser';
+import { getUserById } from './services/getUserById';
 
 const router = Router()
 
@@ -14,7 +16,7 @@ router.post('/users/auth', (request, response) => {
 // Create an user
 
 router.post('/users', (request, response) => {
-    return response.status(StatusCodes.CREATED).send("Created a user.")
+    return createUser(request, response)
 })
 
 // Return data from all users
@@ -26,7 +28,7 @@ router.get('/users', (request, response) => {
 // Return data from a specific user
 
 router.get('/users/:id', (request, response) => {
-    return response.status(StatusCodes.OK).send("Returning data from a specific user.")
+    return getUserById(request, response, request.params.id)
 })
 
 // Update a specific user
