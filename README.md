@@ -13,5 +13,3 @@ yarn start
 ```
 
 The server is going to run on port http://localhost:3333/users/.
-
-## Endpoints
