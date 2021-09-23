@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const keycloakAdminClient = new KcAdminClient({
-    baseUrl: process.env.BASE_AUTH_URL,
+    baseUrl: process.env.BASE_KEYCLOAK_URL,
     realmName: process.env.REALM_NAME
 })
 
