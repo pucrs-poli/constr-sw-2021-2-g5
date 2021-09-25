@@ -1,18 +1,20 @@
 import { Request, Response } from "express";
 import keycloakAdminClient from "../config/keycloak-config";
-import { StatusCodes } from 'http-status-codes';
+import { StatusCodes } from "http-status-codes";
 import { ErrorMessages } from "../utils/response-messages";
 
-export const createUser = async (request: Request, response: Response): Promise<Response> => {
-    
-    let { username, email, firstName, lastName, emailVerified, enabled } = request.body
+export const createUser = async (
+    request: Request,
+    response: Response
+): Promise<Response> => {
+    let { username, email, firstName, lastName, emailVerified, enabled } =
+        request.body;
 
     try {
-        
         if (!keycloakAdminClient.accessToken) {
             return response.status(StatusCodes.BAD_REQUEST).json({
-                message: ErrorMessages.NOT_AUTHORIZED_USER
-            })
+                message: ErrorMessages.NOT_AUTHORIZED_USER,
+            });
         }
 
         const res = await keycloakAdminClient.users.create({
@@ -21,17 +23,16 @@ export const createUser = async (request: Request, response: Response): Promise<
             firstName,
             lastName,
             emailVerified,
-            enabled
-        })
+            enabled,
+        });
 
         return response.status(StatusCodes.CREATED).json({
             id: res.id,
-            body: request.body
-        })
-
+            body: request.body,
+        });
     } catch (err) {
         return response.status(StatusCodes.BAD_REQUEST).json({
-            message: err
-        })
+            message: err,
+        });
     }
-}
+};
