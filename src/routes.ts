@@ -10,43 +10,47 @@ const router = Router();
 // Auth user
 
 router.post("/users/auth", (request, response) => {
-  return authorizeUser(request, response);
+	return authorizeUser(request, response);
 });
 
 // Create an user
 
 router.post("/users", (request, response) => {
-  return createUser(request, response);
+	return createUser(request, response);
 });
 
 // Return data from all users
 
 router.get("/users", (request, response) => {
-  return getAllUsers(request, response);
+	return getAllUsers(request, response);
 });
 
 // Return data from a specific user
 
 router.get("/users/:id", (request, response) => {
-  return getUserById(request, response, request.params.id);
+	return getUserById(request, response, request.params.id);
 });
 
 // Update a specific user
 
 router.put("/users/:id", (request, response) => {
-  return response.status(StatusCodes.ACCEPTED).send("Updated a specific user.");
+	return response
+		.status(StatusCodes.ACCEPTED)
+		.send("Updated a specific user.");
 });
 
 // Update user password
 
 router.patch("/users/:id", (request, response) => {
-  return response.status(StatusCodes.ACCEPTED).send("Password's been updated.");
+	return response
+		.status(StatusCodes.ACCEPTED)
+		.send("Password's been updated.");
 });
 
 // Delete an user
 
 router.delete("/users/:id", (request, response) => {
-  return response.status(StatusCodes.OK).send("User's been deleted.");
+	return response.status(StatusCodes.OK).send("User's been deleted.");
 });
 
 export { router };
