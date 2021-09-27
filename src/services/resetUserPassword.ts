@@ -2,13 +2,15 @@ import { Request, Response } from "express";
 import keycloakAdminClient from "../config/keycloak-config";
 import { StatusCodes } from "http-status-codes";
 import { ErrorMessages } from "../utils/response-messages";
+import CredentialRepresentation from "@keycloak/keycloak-admin-client/lib/defs/credentialRepresentation";
 
 export const resetUserPassword = async (
 	request: Request,
 	response: Response,
     id
 ): Promise<Response> => {
-	let { password } = request.body;
+    
+    let password = request.body.password;
 
 	try {
 		if (!keycloakAdminClient.accessToken) {
@@ -17,7 +19,7 @@ export const resetUserPassword = async (
 			});
 		}
 
-		const res = await keycloakAdminClient.users.resetPassword({
+		await keycloakAdminClient.users.resetPassword({
             id: id,
             credential: {
             	temporary: false,
@@ -26,10 +28,11 @@ export const resetUserPassword = async (
             },
         });
 
-		return response.status(StatusCodes.OK).json(res);
+		return response.status(StatusCodes.OK).json("Password's been updated.");
+
 	} catch (err) {
 		return response.status(StatusCodes.BAD_REQUEST).json({
 			message: err,
 		});
 	}
-};
+}; 
