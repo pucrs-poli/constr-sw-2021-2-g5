@@ -4,6 +4,7 @@ import { authorizeUser } from "./services/authorizeUser";
 import { getAllUsers } from "./services/getAllUsers";
 import { createUser } from "./services/createUser";
 import { getUserById } from "./services/getUserById";
+import { deleteUserById } from "./services/deleteUserById";
 
 const router = Router();
 
@@ -50,7 +51,7 @@ router.patch("/users/:id", (request, response) => {
 // Delete an user
 
 router.delete("/users/:id", (request, response) => {
-	return response.status(StatusCodes.OK).send("User's been deleted.");
+	return deleteUserById(request, response, request.params.id);
 });
 
 export { router };
