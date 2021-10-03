@@ -6,6 +6,7 @@ import { createUser } from "./services/createUser";
 import { getUserById } from "./services/getUserById";
 import { deleteUserById } from "./services/deleteUserById";
 import { resetUserPassword } from './services/resetUserPassword';
+import { updateUser } from './services/updateUser';
 
 const router = Router();
 
@@ -36,9 +37,7 @@ router.get("/users/:id", (request, response) => {
 // Update a specific user
 
 router.put("/users/:id", (request, response) => {
-	return response
-		.status(StatusCodes.ACCEPTED)
-		.send("Updated a specific user.");
+	return updateUser(request, response, request.params.id)
 });
 
 // Update user password
