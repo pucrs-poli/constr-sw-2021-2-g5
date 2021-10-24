@@ -12,8 +12,6 @@ export const updateUser = async (
     let { username, email, firstName, lastName, emailVerified, enabled } =
         request.body;
 
-    let teste:UserRepresentation
-
     try {
         if (!keycloakAdminClient.accessToken) {
             return response.status(StatusCodes.BAD_REQUEST).json({
