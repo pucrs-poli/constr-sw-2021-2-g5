@@ -19,7 +19,7 @@
                             "examples": {
                                 "user": {
                                     "value": {
-                                        "username": "eduardo",
+                                        "username": "constr-sw-2021-2-g5",
                                         "password": "123",
                                         "grantType": "password",
                                         "clientId": "constr-sw-2021-2-g5"
