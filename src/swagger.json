@@ -1,0 +1,293 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CONSTR-SW-2021-2-G5 | T1",
+        "description": "Eduardo Soares, Gabriel Fanto, João Brentano e Sofia Arend.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users/auth": {
+            "post": {
+                "summary": "Auth an user",
+                "tags": ["Auth"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "username": "constr-sw-2021-2-g5",
+                                        "password": "123",
+                                        "grantType": "password",
+                                        "clientId": "constr-sw-2021-2-g5"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User has been authorized.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Auth"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error while authorizing the user."
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "summary": "Register an user",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "username": "eduardo",
+                                        "email": "eduardo@eduardo.com",
+                                        "firstName": "Eduardo",
+                                        "lastName": "Soares",
+                                        "emailVerified": true,
+                                        "enabled": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully registered a new user.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error creating an user. Verify if you are authorized."
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all users and their data.",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "Successfully found users."
+                    },
+                    "404": {
+                        "description": "No records found."
+                    },
+                    "400": {
+                        "description": "User is not authorized."
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "List an user by id.",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User by id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully found user."
+                    },
+                    "404": {
+                        "description": "No records found."
+                    },
+                    "400": {
+                        "description": "User is not authorized."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete an user by id.",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User by id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted user."
+                    },
+                    "404": {
+                        "description": "No records found."
+                    },
+                    "400": {
+                        "description": "User is not authorized."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update user.",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User by id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "username": "eduardo",
+                                        "email": "eduardo@eduardo.com",
+                                        "firstName": "Eduardo",
+                                        "lastName": "Soares",
+                                        "emailVerified": true,
+                                        "enabled": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted user."
+                    },
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "400": {
+                        "description": "User is not authorized."
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update user's password.",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User by id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    }   
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "password": "eduardo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted user."
+                    },
+                    "404": {
+                        "description": "User not found."
+                    },
+                    "400": {
+                        "description": "User is not authorized."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "emailVerified": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Auth": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "grantType": {
+                        "type": "string"
+                    },
+                    "clientId": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
