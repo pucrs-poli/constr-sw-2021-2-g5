@@ -1,55 +1,90 @@
 import { Router } from "express";
-import { StatusCodes } from "http-status-codes";
-import { authorizeUser } from "./services/authorizeUser";
-import { getAllUsers } from "./services/getAllUsers";
-import { createUser } from "./services/createUser";
-import { getUserById } from "./services/getUserById";
-import { deleteUserById } from "./services/deleteUserById";
-import { resetUserPassword } from './services/resetUserPassword';
-import { updateUser } from './services/updateUser';
+import { createDisciplina } from './services/disciplina/createDisciplina';
+import { updateDisciplina } from "./services/disciplina/updateDisciplina";
+import { patchDisciplina } from "./services/disciplina/patchDisciplina";
+import { getDisciplinas } from "./services/disciplina/getDisciplinas";
+import { getDisciplinaById } from "./services/disciplina/getDisciplinaById";
+import { getDisciplinasByValidade } from "./services/disciplina/getDisciplinasByValidade";
+import { getDisciplinaByCodigo } from "./services/disciplina/getDisciplinaByCodigo";
+import { deleteDisciplina } from "./services/disciplina/deleteDisciplina";
+import { createTurma } from "./services/turma/createTurma";
+import { updateTurma } from "./services/turma/updateTurma";
+import { patchTurma } from "./services/turma/patchTurma";
+import { getTurmas } from "./services/turma/getTurmas";
+import { getTurmaById } from './services/turma/getTurmaById';
+import { getTurmaByAno } from "./services/turma/getTurmaByAno";
+import { getTurmasByHorario } from './services/turma/getTurmasByHorario';
+import { deleteTurma } from "./services/turma/deleteTurma";
+
 
 const router = Router();
 
-// Auth user
+// Disciplina routes
 
-router.post("/users/auth", (request, response) => {
-	return authorizeUser(request, response);
+router.get('/disciplina', (request, response) => {
+    return getDisciplinas(request, response);
 });
 
-// Create an user
-
-router.post("/users", (request, response) => {
-	return createUser(request, response);
+router.get('/disciplina/:id', (request, response) => {
+    return getDisciplinaById(request, response, request.params.id);
 });
 
-// Return data from all users
-
-router.get("/users", (request, response) => {
-	return getAllUsers(request, response);
+router.get('/disciplinas/validade', (request, response) => {
+    return getDisciplinasByValidade(request, response);
 });
 
-// Return data from a specific user
-
-router.get("/users/:id", (request, response) => {
-	return getUserById(request, response, request.params.id);
+router.get('/disciplinas/codigo', (request,response) => {
+    return getDisciplinaByCodigo(request, response);
 });
 
-// Update a specific user
-
-router.put("/users/:id", (request, response) => {
-	return updateUser(request, response, request.params.id)
+router.post('/disciplina', (request, response) => {
+    return createDisciplina(request, response);
 });
 
-// Update user password
-
-router.patch("/users/:id", (request, response) => {
-	return resetUserPassword(request, response, request.params.id)
+router.put('/disciplina/:id', (request,response) => {
+    return updateDisciplina(request,response);
 });
 
-// Delete an user
-
-router.delete("/users/:id", (request, response) => {
-	return deleteUserById(request, response, request.params.id);
+router.patch('/disciplina/:id', (request,response) => {
+    return patchDisciplina(request,response);
 });
 
-export { router };
+router.delete('/disciplina/:id', (request, response) => {
+    return deleteDisciplina(request, response, request.params.id);
+});
+
+// Turma routes
+
+router.get('/turma', (request, response) => {
+    return getTurmas(request, response);
+});
+
+router.get('/turma/:id', (request, response) => {
+    return getTurmaById(request, response, request.params.id);
+});
+
+router.get('/turmas/horario', (request, response) => {
+    return getTurmasByHorario(request, response);
+});
+
+router.get('/turmas/ano', (request,response) => {
+    return getTurmaByAno(request,response);
+})
+
+router.post('/turma', (request, response) => {
+    return createTurma(request, response);
+});
+
+router.put('/turma/:id', (request,response) => {
+     return updateTurma(request,response);
+});
+
+router.patch('/turma/:id', (request,response) => {
+    return patchTurma(request,response);
+});
+
+router.delete('/turma/:id', (request, response) => {
+    return deleteTurma(request, response, request.params.id);
+});
+
+export { router }

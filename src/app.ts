@@ -1,14 +1,46 @@
-import express from "express";
-import swaggerUi from "swagger-ui-express"
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import { router } from './routes';
+import dotenv from "dotenv";
 
-import { router } from "./routes";
+import swaggerUi from "swagger-ui-express";
 
 import swaggerDocs from "./swagger.json";
 
-const app = express();  
+class App {
 
-app.use(express.json());
-app.use(router);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    public express: express.Application
 
-export { app };
+    public constructor() {
+        this.express = express();
+
+        this.middlewares();
+        this.database();
+        this.routes();
+    }
+
+    private middlewares(): void {
+        this.express.use(express.json());
+        this.express.use(cors());
+        this.express.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+    }
+
+    private database(): void {
+
+        dotenv.config()
+
+        let username = process.env.DATABASE_USER;
+        let password = process.env.DATABASE_PASSWORD;
+
+        mongoose.connect(
+            `mongodb+srv://${username}:${password}@sandbox.xhgsj.mongodb.net/constr-sw-2021-g5-t2?retryWrites=true&w=majority`
+        )
+    }
+
+    private routes(): void {
+        this.express.use(router)
+    }
+}
+
+export default new App().express
