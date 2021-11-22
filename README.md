@@ -45,13 +45,13 @@ http://localhost:3333/api-docs/
 
 ```json
 {
-   "nome":string	        
-   "validade"	     
-   "objetivos"	  
-   "ementa"	     
-   "codigo"	     
-   "creditos"	     
-   "cargaHoraria"  
+  "nome": "Projeto e Arquitetura de Software",
+  "validade": 2021,
+  "objetivos": "Aplicar técnicas de reutilização de software.",
+  "ementa": "Conhecimento das arquiteturas dirigidas por modelos. Desenvolvimento e uso de ferramentas de reutilização de software.",
+  "codigo": 12,
+  "creditos": 6,
+  "cargaHoraria": 80
 }
 ```
 
@@ -59,10 +59,10 @@ http://localhost:3333/api-docs/
 
 ```json
 {
-  numero	        number
-  ano	           number
-  semestre	     number
-  disciplina	  string
-  horario	     string
+  "numero": 31,
+  "ano": 2021,
+  "semestre": 2,
+  "disciplina": "61843c585bb2b615ba46af14",
+  "horario": "NP"
 }
 ```
