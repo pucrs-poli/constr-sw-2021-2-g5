@@ -45,13 +45,13 @@ http://localhost:3333/api-docs/
 
 ```json
 {
-   nome	        string
-   validade	     string
-   objetivos	  string
-   ementa	     string
-   codigo	     number
-   creditos	     number
-   cargaHoraria  number
+   "nome"	        
+   "validade"	     
+   "objetivos"	  
+   "ementa"	     
+   "codigo"	     
+   "creditos"	     
+   "cargaHoraria"  
 }
 ```
 
