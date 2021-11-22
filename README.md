@@ -44,13 +44,13 @@ http://localhost:3333/api-docs/
 ### Disciplinas
 ```
 {
-nome	string
-validade	string
-objetivos	string
-ementa	string
-codigo	number
-creditos	number
-cargaHoraria	number
+   nome	        string
+   validade	    string
+   objetivos	  string
+   ementa	      string
+   codigo	      number
+   creditos	    number
+   cargaHoraria	number
 }
 ```
 
@@ -58,10 +58,10 @@ cargaHoraria	number
 
 ```
 {
-numero	number
-ano	number
-semestre	number
-disciplina	string
-horario	string
+  numero	    number
+  ano	        number
+  semestre	  number
+  disciplina	string
+  horario	    string
 }
 ```
