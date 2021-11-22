@@ -45,12 +45,12 @@ http://localhost:3333/api-docs/
 ```
 {
    nome	        string
-   validade	    string
+   validade	     string
    objetivos	  string
-   ementa	      string
-   codigo	      number
-   creditos	    number
-   cargaHoraria	number
+   ementa	     string
+   codigo	     number
+   creditos	     number
+   cargaHoraria  number
 }
 ```
 
@@ -58,10 +58,10 @@ http://localhost:3333/api-docs/
 
 ```
 {
-  numero	    number
-  ano	        number
-  semestre	  number
-  disciplina	string
-  horario	    string
+  numero	        number
+  ano	           number
+  semestre	     number
+  disciplina	  string
+  horario	     string
 }
 ```
