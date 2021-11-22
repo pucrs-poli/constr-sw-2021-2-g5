@@ -45,7 +45,7 @@ http://localhost:3333/api-docs/
 
 ```json
 {
-   "nome"	        
+   "nome":string	        
    "validade"	     
    "objetivos"	  
    "ementa"	     
