@@ -42,7 +42,8 @@ http://localhost:3333/api-docs/
 ## Schemas
 
 ### Disciplinas
-```
+
+```json
 {
    nome	        string
    validade	     string
@@ -56,7 +57,7 @@ http://localhost:3333/api-docs/
 
 ### Turmas
 
-```
+```json
 {
   numero	        number
   ano	           number
